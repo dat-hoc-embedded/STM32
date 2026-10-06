@@ -1,0 +1,58 @@
+flowchart TD
+    classDef initStyle fill:#2d3748,stroke:#4a5568,color:#fff
+    classDef alignStyle fill:#2b6cb0,stroke:#3182ce,color:#fff
+    classDef decompStyle fill:#dd6b20,stroke:#dd6b20,color:#fff
+    classDef execStyle fill:#276749,stroke:#2f855a,color:#fff
+    classDef refactorStyle fill:#744210,stroke:#975a16,color:#fff
+    classDef verifyStyle fill:#533e85,stroke:#6b46c1,color:#fff
+
+    subgraph Phase1 ["1. Initialization & Guardrails"]
+        A1["Initialize Repo & Indexing"] --> A2["Inject Project Rules (.cursorrules / agents.md)"]
+        A2 --> A3["Connect MCP Infrastructure (DB, Docs, Browser)"]
+    end
+
+    subgraph Phase2 ["2. Requirement Alignment"]
+        B1["Receive Brief / Feature Request"] --> B2["Run /grill-me Skill (Recursive Q&A)"]
+        B2 --> B3{"Resolved Design Tree Ambiguities?"}
+        B3 -- No --> B2
+        B3 -- Yes --> B4["Shared Context Achieved"]
+    end
+
+    subgraph Phase3 ["3. Decomposition"]
+        C1["Run /write-a-prd (Generate PRD-Feature.md)"] --> C2["Run /prd-to-issues (Vertical Tracer Bullets)"]
+        C2 --> C3["Build Dependency Task Graph (DAG)"]
+    end
+
+    subgraph Phase4 ["4. Isolated AFK Execution"]
+        D1["Allocate Sandbox (Git Worktree / Docker)"] --> D2["Run /tdd (Red-Green-Refactor)"]
+        D2 --> D3["Local Feedback Loops (Typecheck / Linter)"]
+        D3 --> D4{"Errors Found?"}
+        D4 -- Yes --> D2
+        D4 -- No --> D5["Code Pass"]
+    end
+
+    subgraph Phase5 ["5. Architecture Refactoring"]
+        E1["Run /improve-codebase-architecture"] --> E2{"Shallow Modules Found?"}
+        E2 -- Yes --> E3["Parallel Sub-agents Design Interfaces"] --> E4["Consolidate into Deep Modules"]
+        E2 -- No --> E5["Clean Architecture Confirmed"]
+    end
+
+    subgraph Phase6 ["6. Verification & Delivery"]
+        F1["Execute Headless Browser Tests & Export Proof (walkthrough.md)"] --> F2["AI Reviewer Audit (Clean Context)"]
+        F2 --> F3{"Passed Security & Style?"}
+        F3 -- No --> D2
+        F3 -- Yes --> F4["Merge PR & Deploy via CI/CD"]
+    end
+
+    Phase1 ---> Phase2
+    Phase2 ---> Phase3
+    Phase3 ---> Phase4
+    Phase4 ---> Phase5
+    Phase5 ---> Phase6
+
+    class A1,A2,A3 initStyle
+    class B1,B2,B3,B4 alignStyle
+    class C1,C2,C3 decompStyle
+    class D1,D2,D3,D4,D5 execStyle
+    class E1,E2,E3,E4,E5 refactorStyle
+    class F1,F2,F3,F4 verifyStyle

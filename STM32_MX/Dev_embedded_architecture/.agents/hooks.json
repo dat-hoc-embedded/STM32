@@ -1,0 +1,17 @@
+{
+  "autogen-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "replace_file_content|multi_replace_file_content|write_to_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File .agents/scripts/guard_autogen.ps1",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

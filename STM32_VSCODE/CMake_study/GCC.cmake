@@ -7,8 +7,10 @@ set(BINUTILS_PATH ${ARM_TOOLCHAIN_DIR}/../lib)   #
 set(TOOLCHAIN_PREFIX ${ARM_TOOLCHAIN_DIR}/arm-none-eabi-) 
 
 set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}gcc.exe)        # arm-none-eabi-gcc.exe
-set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER}gcc.exe)        # ASM dùng chung gcc.exe
+set(CMAKE_ASM_COMPILER ${TOOLCHAIN_PREFIX}gcc.exe)        # ASM dùng chung gcc.exe
 set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}g++.exe)      # arm-none-eabi-g++.exe
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -specs=nosys.specs")
 
 set(CMAKE_OBJCOPY ${TOOLCHAIN_PREFIX}objcopy CACHE INTERNAL "objcopy tool")   # objcopy → convert .elf → .bin/.hex
 set(CMAKE_SIZE_UTIL ${TOOLCHAIN_PREFIX}size CACHE INTERNAL "size tool")       # size → xem size firmware
